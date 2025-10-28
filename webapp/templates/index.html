@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+  ANN Savings Calculator - Web Interface Template
+  
+  This HTML template provides the user interface for the AI-powered savings
+  calculator web application. It includes form inputs for financial data,
+  result display areas, and chart visualization components.
+  
+  Key Components:
+  - Responsive form for financial input
+  - Dynamic results section with predictions
+  - Interactive chart area for data visualization
+  - Clean, accessible design with proper semantics
+  
+  Author: ANN Savings Calculator Team
+  Created: 2025
+-->
+<html lang="en">
+	<head>
+		<!-- Document metadata and configuration -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="AI-powered savings calculator using neural networks to predict financial behavior and provide personalized recommendations."
+		/>
+		<meta
+			name="keywords"
+			content="savings, calculator, AI, neural network, financial planning"
+		/>
+
+		<!-- Page title -->
+		<title>ANN Savings Calculator - AI Financial Planning</title>
+
+		<!-- Stylesheets -->
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+
+		<!-- External libraries -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body>
+		<!-- Main application container -->
+		<div class="container">
+			<!-- Application header -->
+			<header>
+				<h1>🧠 ANN Savings Calculator</h1>
+				<p>AI-powered financial insights using neural networks</p>
+			</header>
+
+			<!-- Financial input form -->
+			<main>
+				<form id="form" aria-label="Financial Information Form">
+					<!-- Monthly income input -->
+					<label for="income">
+						Monthly Income (INR)
+						<input
+							id="income"
+							name="income"
+							type="number"
+							value="50000"
+							min="1000"
+							max="10000000"
+							step="100"
+							required
+							aria-describedby="income-help"
+						/>
+						<small id="income-help"
+							>Enter your total monthly income in Indian Rupees</small
+						>
+					</label>
+
+					<!-- Monthly spending input -->
+					<label for="spending">
+						Monthly Spending (INR)
+						<input
+							id="spending"
+							name="spending"
+							type="number"
+							value="30000"
+							min="0"
+							max="10000000"
+							step="100"
+							required
+							aria-describedby="spending-help"
+						/>
+						<small id="spending-help"
+							>Enter your typical monthly expenses</small
+						>
+					</label>
+
+					<!-- Savings goal input -->
+					<label for="savings_goal">
+						Savings Goal (%)
+						<input
+							id="savings_goal"
+							name="savings_goal"
+							type="number"
+							value="40"
+							min="1"
+							max="90"
+							step="1"
+							required
+							aria-describedby="goal-help"
+						/>
+						<small id="goal-help"
+							>Target percentage of income to save (1-90%)</small
+						>
+					</label>
+
+					<!-- Submit button -->
+					<button type="submit" aria-describedby="calc-help">
+						🔮 Calculate Predictions
+					</button>
+					<small id="calc-help"
+						>Get AI-powered financial insights and recommendations</small
+					>
+				</form>
+
+				<!-- Results display section (hidden by default) -->
+				<section
+					id="result"
+					class="card"
+					style="display: none"
+					aria-live="polite"
+				>
+					<h2>📊 AI Predictions & Recommendations</h2>
+
+					<!-- Prediction results grid -->
+					<div class="results-grid">
+						<div class="result-item">
+							<strong>Predicted Spending:</strong>
+							<span id="spend" class="result-value"></span>
+						</div>
+
+						<div class="result-item">
+							<strong>Predicted Saving:</strong>
+							<span id="save" class="result-value"></span>
+						</div>
+
+						<div class="result-item">
+							<strong>Goal Achievement:</strong>
+							<span id="goal" class="result-value goal-status"></span>
+						</div>
+					</div>
+
+					<!-- AI recommendation -->
+					<div class="recommendation">
+						<h3>💡 AI Recommendation</h3>
+						<p id="rec"></p>
+					</div>
+
+					<!-- Motivational note -->
+					<div class="note" id="note"></div>
+				</section>
+
+				<!-- Chart visualization area (hidden by default) -->
+				<section id="chart-section" style="display: none">
+					<h3>📈 Visual Analysis</h3>
+					<div class="chart-container">
+						<canvas
+							id="chart"
+							width="400"
+							height="220"
+							style="display: none"
+							aria-label="Financial breakdown chart showing spending, savings, and goal percentages"
+						></canvas>
+					</div>
+				</section>
+			</main>
+
+			<!-- Application footer -->
+			<footer>
+				<p>
+					<small>
+						Powered by TensorFlow Neural Networks • Built with Flask & Chart.js
+						•
+						<a href="https://github.com" target="_blank" rel="noopener">
+							View Source Code
+						</a>
+					</small>
+				</p>
+			</footer>
+		</div>
+
+		<!-- Application JavaScript -->
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
+	</body>
+</html>
